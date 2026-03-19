@@ -1,13 +1,11 @@
-import javax.lang.model.element.NestingKind;
+package Ex1;
 
 public class FigTree extends Tree
 {
-
-
     FigTree(int height, Season season)
     {
         // TODO: Implement.
-        super(height,season=null,null);
+        super(height,season,Color.YELLOW);
     }
 
     @Override
@@ -15,15 +13,19 @@ public class FigTree extends Tree
     {
         // TODO: Implement.
         if (leavesColor == null)
-            return "Fig tree. My height is: " +height+ "and I have no leaves";
-        else
-            return "Fig tree. My height is: " +height+ "and my color is: " + leavesColor;
+            return "Fig tree. My height is: " +height+ " and I have no leaves";
+        if (season == Season.SUMMER)
+            state = "I give fruit. ";
+        return "Fig tree. "+state+ "My height is: " +height+ " and my color is: " + leavesColor;
 
     }
     @Override
     public void changeSeason()
     {
-        switch (nextSomeSeason())
+        setSeason(nextSomeSeason());
+        Season season = getCurrentSeason();
+        state = "";
+        switch (season)
         {
             case WINTER:
                 height = height + 20;
@@ -36,6 +38,8 @@ public class FigTree extends Tree
             case SUMMER:
                 height = height + 30;
                 leavesColor = Color.GREEN;
+                state = "I give fruit. ";
+
                 break;
             case FALL:
                 height = height + 20;
@@ -45,5 +49,5 @@ public class FigTree extends Tree
 
     }
         // TODO: Implement.
-    }
+
 }

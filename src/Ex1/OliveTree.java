@@ -1,23 +1,30 @@
+package Ex1;
+
 public class OliveTree extends Tree
 {
-
 
     OliveTree(int height, Season season)
     {
         // TODO: Implement.
-        super(0,null,Color.GREEN);
+        super(height,season,Color.GREEN);
     }
 
     @Override
     public String toString()
     {
         // TODO: Implement.
-        return "Olive tree. " +state+ "My height is: "+height+ "and my color is: " +leavesColor;
+        if (season == Season.FALL)
+            state = "I give fruit. ";
+        return "Olive tree. " +state+ "My height is: "+height+ " and my color is: " +leavesColor;
     }
+
     @Override
     public void changeSeason()
     {
-        switch ( nextSomeSeason())
+        setSeason(nextSomeSeason());
+        Season season = getCurrentSeason();
+        state = "";
+        switch (season)
         {
             case WINTER:
                 height=height + 5;

@@ -1,21 +1,28 @@
+package Ex1;
+
 public class Bear extends Animal
 {
 
     Bear(int weight, Season season)
     {
         // TODO: Implement.
-        super(weight,null, Color.BROWN);
+        super(weight,season, Color.BROWN);
     }
     @Override
     public String toString()
     {
         // TODO: Implement.
-        return "Bear. "+state+ "My weight is: " +weight+ "and my color is: " +color;
+        return "EX1.Bear. "+state+ "My weight is: " +weight+ " and my color is: " +color;
     }
     @Override
     public void changeSeason()
     {
-        switch (nextSomeSeason())
+        setSeason(nextSomeSeason());
+        Season season = getCurrentSeason();
+        state = "";
+        color = Color.BROWN;
+
+        switch (season)
         {
             case WINTER:
                 weight = (int) Math.round(weight * 0.8);

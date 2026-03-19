@@ -1,26 +1,31 @@
+package Ex1;
+
 public class Caribou extends Animal
 {
 
     Caribou(int weight, Season season)
     {
         // TODO: Implement.
-        super(weight=0, season = null,Color.BROWN);
+        super(weight, season,Color.BROWN);
     }
 
     @Override
     public String toString()
     {
         // TODO: Implement.
-        return "Caribou: " +state+ "My weight is: " + weight +"and my color is: " +color;
+        return "EX1.Caribou: " +state+ "My weight is: " + weight +" and my color is: " +color;
     }
 
     @Override
     public void changeSeason()
     {
-        switch (nextSomeSeason())
+        setSeason(nextSomeSeason());
+        Season season = getCurrentSeason();
+        state = "";
+        switch (season)
         {
             case WINTER:
-                color = Color.YELLOW;
+                color = Color.WHITE;
                 state = "I am migrating south. ";
                 break;
 
@@ -29,6 +34,7 @@ public class Caribou extends Animal
                 break;
 
             case SUMMER:
+                color = Color.BROWN;
                 state = "I am migrating north. ";
                 break;
 
