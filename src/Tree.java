@@ -13,6 +13,13 @@ public abstract class Tree implements Comparable, Seasonable {
         this.leavesColor = leavesColor;
     }
 
+    public Season nextSomeSeason()
+    {
+        Season currentSeason = getCurrentSeason();
+        Season[] seasons = Season.values();
+        int nextIndex = (currentSeason.ordinal() + 6) % seasons.length;
+        return seasons[nextIndex];
+    }
     @Override
     public Season getCurrentSeason() {
         return season;

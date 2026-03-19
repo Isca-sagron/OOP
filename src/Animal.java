@@ -5,7 +5,7 @@ public abstract class Animal implements Seasonable,Comparable
     protected Color color;
     // TODO: Add auxiliary fields and functions.
 
-    protected String state;
+    protected String state = "";
 
     Animal(int weight, Season season, Color color)
     {
@@ -20,6 +20,13 @@ public abstract class Animal implements Seasonable,Comparable
     }
 
 
+    public Season nextSomeSeason()
+    {
+        Season currentSeason = getCurrentSeason();
+        Season[] seasons = Season.values();
+        int nextIndex = (currentSeason.ordinal() + 6) % seasons.length;
+        return seasons[nextIndex];
+    }
     @Override
     public int compareTo(Object o)
     {
