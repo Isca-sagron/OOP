@@ -1,18 +1,23 @@
-public class OliveTree extends Tree {
+public class OliveTree extends Tree
+{
 
 
-    OliveTree(int height, Season season) {
+    OliveTree(int height, Season season)
+    {
         // TODO: Implement.
         super(0,null,null);
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         // TODO: Implement.
-        return null;
+        return "Olive tree. " +state+ "My height is: "+height+ "and my color is: " +leavesColor;
     }
     @Override
-    public void changeSeason() {
+    public void changeSeason()
+    {
         // TODO: Implement.
+
     }
 }

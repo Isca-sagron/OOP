@@ -1,14 +1,17 @@
-public class Caribou extends Animal {
+public class Caribou extends Animal
+{
 
-    Caribou(int weight, Season season) {
+    Caribou(int weight, Season season)
+    {
         // TODO: Implement.
         super(0, null, null);
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         // TODO: Implement.
-        return null;
+        return "Caribou: My weight is: " + weight +"and my color is: " +color;
     }
 
     @Override

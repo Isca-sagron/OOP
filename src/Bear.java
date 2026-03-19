@@ -1,16 +1,20 @@
-public class Bear extends Animal {
+public class Bear extends Animal
+{
 
-    Bear(int weight, Season season) {
+    Bear(int weight, Season season)
+    {
         // TODO: Implement.
         super(0,null,null);
     }
     @Override
-    public String toString() {
+    public String toString()
+    {
         // TODO: Implement.
-        return null;
+        return "Bear."+state+ " My weight is: " +weight+ "and my color is: " +color;
     }
     @Override
-    public void changeSeason() {
+    public void changeSeason()
+    {
         // TODO: Implement.
     }
 }

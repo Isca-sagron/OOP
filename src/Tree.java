@@ -4,7 +4,10 @@ public abstract class Tree implements Comparable, Seasonable {
     protected Color leavesColor;
     // TODO: Add auxiliary fields and functions.
 
-    Tree(int height, Season season, Color leavesColor){
+    protected String state;
+
+    Tree(int height, Season season, Color leavesColor)
+    {
         this.height = height;
         this.season = season;
         this.leavesColor = leavesColor;
