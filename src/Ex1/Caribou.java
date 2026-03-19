@@ -1,5 +1,4 @@
 package Ex1;
-
 public class Caribou extends Animal
 {
 
@@ -13,7 +12,7 @@ public class Caribou extends Animal
     public String toString()
     {
         // TODO: Implement.
-        return "EX1.Caribou: " +state+ "My weight is: " + weight +" and my color is: " +color;
+        return "Caribou: " +state+ "My weight is: " + weight +" and my color is: " +color;
     }
 
     @Override
@@ -43,6 +42,6 @@ public class Caribou extends Animal
         }
 
     }
-        // TODO: Implement.
+    // TODO: Implement.
 
 }

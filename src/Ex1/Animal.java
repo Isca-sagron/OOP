@@ -1,5 +1,4 @@
 package Ex1;
-
 public abstract class Animal implements Seasonable,Comparable
 {
     protected int weight;
@@ -43,7 +42,7 @@ public abstract class Animal implements Seasonable,Comparable
     {
         if (!(o instanceof Animal))
         {
-            throw new ClassCastException("Cannot compare EX1.Animal to non-EX1.Animal");
+            throw new ClassCastException("Cannot compare Animal to non-Animal");
         }
         Animal otherAnimal = (Animal) o;
         return Integer.compare(this.weight, otherAnimal.weight);

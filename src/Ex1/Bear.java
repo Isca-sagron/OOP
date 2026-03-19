@@ -1,5 +1,4 @@
 package Ex1;
-
 public class Bear extends Animal
 {
 
@@ -12,7 +11,7 @@ public class Bear extends Animal
     public String toString()
     {
         // TODO: Implement.
-        return "EX1.Bear. "+state+ "My weight is: " +weight+ " and my color is: " +color;
+        return "Bear. "+state+ "My weight is: " +weight+ " and my color is: " +color;
     }
     @Override
     public void changeSeason()
@@ -42,6 +41,6 @@ public class Bear extends Animal
                 break;
         }
     }
-        // TODO: Implement.
+    // TODO: Implement.
 
 }

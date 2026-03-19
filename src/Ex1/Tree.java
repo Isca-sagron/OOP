@@ -1,5 +1,4 @@
 package Ex1;
-
 public abstract class Tree implements Comparable, Seasonable
 {
     protected int height;
@@ -21,7 +20,6 @@ public abstract class Tree implements Comparable, Seasonable
     {
         this.season = season;
     }
-
     public Season nextSomeSeason()
     {
         Season currentSeason = getCurrentSeason();
@@ -47,7 +45,7 @@ public abstract class Tree implements Comparable, Seasonable
         // TODO: Implement.
         if (!(o instanceof Tree))
         {
-            throw new ClassCastException("Cannot compare EX1.Tree to non-EX1.Tree");
+            throw new ClassCastException("Cannot compare Tree to non-Tree");
         }
         Tree otherTree = (Tree) o;
         return Integer.compare(this.height, otherTree.height);    }
