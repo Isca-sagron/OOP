@@ -1,3 +1,5 @@
+package EX2;
+
 import java.util.*;
 
 import static java.util.stream.Collectors.*;
@@ -11,13 +13,54 @@ class ProfileBasedRecommender<T extends Item> extends RecommenderSystem<T> {
     }
 
     @Override
-    public List<T> recommendTop10(int userId) {
+    public List<T> recommendTop10(int userId)
+    {
+        Set<User> matchingUsers = getMatchingProfileUsers(userId).stream()
+                .collect(toSet());
+
+        Set<Integer> ratedItemsByUser = ratings.stream()
+                .filter(r -> r.getUserId() == userId)
+                .map(r -> r.getItemId())
+                .collect(toSet());
+
+        return ratings.stream()
+                .filter(r-> matchingUsers.contains(r.getUserId()))
+                .filter(r-> !(ratedItemsByUser.contains(r.getItemId())))
+                .collect(groupingBy(r -> r.getItemId()))
+                .entrySet().stream()
+                .filter(entry -> entry.getValue().size() >= 5)
+                .sorted(
+                        Comparator.<Map.Entry<Integer, List<Rating<T>>>>comparingDouble(
+                                        entry -> entry.getValue().stream()
+                                                .mapToDouble(r -> r.getRating())
+                                                .average()
+                                                .orElse(0.0)
+                                ).reversed()
+                                .thenComparing(
+                                        Comparator.<Map.Entry<Integer, List<Rating<T>>>>comparingInt(
+                                                entry -> entry.getValue().size()
+                                        ).reversed()
+                                )
+                                .thenComparing(entry -> items.get(entry.getKey()).getName())
+                )
+                .limit(NUM_OF_RECOMMENDATIONS)
+                .map(entry -> items.get(entry.getKey()))
+                .toList();
+
+
         // TODO: implement
-        return null;
     }
 
-    public List<User> getMatchingProfileUsers(int userId) {
+    public List<User> getMatchingProfileUsers(int userId)
+    {
+        User ourUser = users.get(userId);
+
+        return users.entrySet().stream()
+                .filter(n -> n.getValue().getGender() == ourUser.getGender() &&
+                        (!(n.getValue().getAge() > ourUser.getAge()+5) && !(n.getValue().getAge() < ourUser.getAge()-5)))
+                .map(n-> n.getValue())
+                .collect(toList());
         // TODO: implement
-        return null;
+
     }
 }
