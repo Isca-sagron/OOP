@@ -187,23 +187,20 @@ class SimilarityBasedRecommender<T extends Item> extends RecommenderSystem<T>
         return userBiases.getOrDefault(userId, 0.0);
     }
 
-    public void printGlobalBias()
+    public double getGlobalBias()
     {
-        // TODO: fix
-        System.out.println("Global bias: " + String.format("%.2f", globalBias));
+        return globalBias;
     }
 
-    public void printItemBias(int itemId)
+    public double getItemBias(int itemId)
     {
-        // TODO: fix
-        System.out.println("Item bias for item " + itemId + ": "
-                + String.format("%.2f", getItemBiasValue(itemId)));
+        return getItemBiasValue(itemId);
     }
 
-    public void printUserBias(int userId)
+    public double getUserBias(int userId)
     {
-        // TODO: fix
-        System.out.println("User bias for user " + userId + ": "
-                + String.format("%.2f", getUserBiasValue(userId)));
+        return getUserBiasValue(userId);
     }
+
+
 }

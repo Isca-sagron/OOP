@@ -25,19 +25,16 @@ class PopularityBasedRecommender<T extends Item> extends RecommenderSystem<T>
                 .filter(n -> getItemRatingsCount(n.getKey()) >= POPULARITY_THRESHOLD )
 
                 .sorted
-                    (
-                        Comparator.<Map.Entry<Integer, T>>comparingDouble(n-> getItemAverageRating(n.getKey()))
-                                .reversed()
-                        .thenComparing (Comparator.<Map.Entry<Integer, T>>comparingInt(entry -> getItemRatingsCount(entry.getKey()))
-                                .reversed())
-                        .thenComparing(entry -> entry.getValue().getName())
-                    )
+                        (
+                                Comparator.<Map.Entry<Integer, T>>comparingDouble(n-> getItemAverageRating(n.getKey()))
+                                        .reversed()
+                                        .thenComparing (Comparator.<Map.Entry<Integer, T>>comparingInt(entry -> getItemRatingsCount(entry.getKey()))
+                                                .reversed())
+                                        .thenComparing(entry -> entry.getValue().getName())
+                        )
                 .limit(NUM_OF_RECOMMENDATIONS)
                 .map(n -> n.getValue())
-                .toList();
-
-        // TODO: implement
-
+                .collect(toList());
     }
 
     public double getItemAverageRating(int itemId)
@@ -55,8 +52,6 @@ class PopularityBasedRecommender<T extends Item> extends RecommenderSystem<T>
         return (int) ratings.stream()
                 .filter(r-> r.getItemId() == itemId)
                 .count();
-        // TODO: implement
-
     }
 
 }

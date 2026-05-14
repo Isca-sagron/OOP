@@ -1,3 +1,4 @@
+package EX2;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -14,9 +15,8 @@ abstract class RecommenderSystem<T extends Item> {
 
     protected final int NUM_OF_RECOMMENDATIONS = 10;
 
-    protected RecommenderSystem(Map<Integer, User> users,
-                                Map<Integer, T> items,
-                                List<Rating<T>> ratings) {
+    protected RecommenderSystem(Map<Integer, User> users, Map<Integer, T> items, List<Rating<T>> ratings)
+    {
         this.users = users;
         this.items = items;
         this.ratings = ratings;

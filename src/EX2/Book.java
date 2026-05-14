@@ -1,3 +1,4 @@
+package EX2;
 public class Book implements Item {
     private final int id;
     private final String name;

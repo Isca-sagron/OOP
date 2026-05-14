@@ -1,3 +1,4 @@
+package EX2;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -9,9 +10,9 @@ import static java.util.stream.Collectors.toMap;
 
 public class MainApp {
     // TODO: change the paths to correspond with the location of the files on the local computer
-    public static final String USERS_PATH = "Users.txt";
-    public static final String BOOKS_PATH = "Books.txt";
-    public static final String RATINGS_PATH = "Ratings.txt";
+    public static final String USERS_PATH = "src/EX2/Users.txt";
+    public static final String BOOKS_PATH = "src/EX2/Books.txt";
+    public static final String RATINGS_PATH = "src/EX2/Ratings.txt";
     public static Map<Integer, User> users;
     public static Map<Integer, Book> books;
     public static List<Rating<Book>> ratings;
@@ -20,7 +21,17 @@ public class MainApp {
         testRecommenderSystem();
     }
     public static void initElements() throws IOException {
-        // TODO: initialize users, books and ratings
+        users = Files.readAllLines(Paths.get(USERS_PATH)).stream()
+                .map(User::new)
+                .collect(toMap(User::getId, u -> u));
+
+        books = Files.readAllLines(Paths.get(BOOKS_PATH)).stream()
+                .map(Book::new)
+                .collect(toMap(Book::getId, b -> b));
+
+        ratings = Files.readAllLines(Paths.get(RATINGS_PATH)).stream()
+                .<Rating<Book>>map(Rating::new)
+                .collect(java.util.stream.Collectors.toList());
     }
     public static void testRecommenderSystem() {
         Scanner in = new Scanner(System.in);

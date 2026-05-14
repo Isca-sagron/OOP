@@ -1,3 +1,4 @@
+package EX2;
 class User {
     private final int id;
     private final String name;

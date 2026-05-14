@@ -15,7 +15,8 @@ class ProfileBasedRecommender<T extends Item> extends RecommenderSystem<T> {
     @Override
     public List<T> recommendTop10(int userId)
     {
-        Set<User> matchingUsers = getMatchingProfileUsers(userId).stream()
+        Set<Integer> matchingUserIds = getMatchingProfileUsers(userId).stream()
+                .map(User::getId)
                 .collect(toSet());
 
         Set<Integer> ratedItemsByUser = ratings.stream()
@@ -24,7 +25,7 @@ class ProfileBasedRecommender<T extends Item> extends RecommenderSystem<T> {
                 .collect(toSet());
 
         return ratings.stream()
-                .filter(r-> matchingUsers.contains(r.getUserId()))
+                .filter(r-> matchingUserIds.contains(r.getUserId()))
                 .filter(r-> !(ratedItemsByUser.contains(r.getItemId())))
                 .collect(groupingBy(r -> r.getItemId()))
                 .entrySet().stream()
@@ -45,7 +46,7 @@ class ProfileBasedRecommender<T extends Item> extends RecommenderSystem<T> {
                 )
                 .limit(NUM_OF_RECOMMENDATIONS)
                 .map(entry -> items.get(entry.getKey()))
-                .toList();
+                .collect(toList());
 
 
         // TODO: implement
@@ -56,7 +57,8 @@ class ProfileBasedRecommender<T extends Item> extends RecommenderSystem<T> {
         User ourUser = users.get(userId);
 
         return users.entrySet().stream()
-                .filter(n -> n.getValue().getGender() == ourUser.getGender() &&
+                .filter(n -> n.getKey() != userId)
+                .filter(n -> n.getValue().getGender().equals(ourUser.getGender()) &&
                         (!(n.getValue().getAge() > ourUser.getAge()+5) && !(n.getValue().getAge() < ourUser.getAge()-5)))
                 .map(n-> n.getValue())
                 .collect(toList());
