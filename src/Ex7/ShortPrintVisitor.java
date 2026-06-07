@@ -1,3 +1,5 @@
+package Ex7;
+
 public class ShortPrintVisitor implements FileDetailsVisitor {
     private StringBuilder output = new StringBuilder();
 
