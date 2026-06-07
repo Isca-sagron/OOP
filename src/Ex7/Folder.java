@@ -1,4 +1,6 @@
 package Ex7;
+import Ex7b.Visitor;
+
 import java.util.ArrayList;
 import java.util.List;
 

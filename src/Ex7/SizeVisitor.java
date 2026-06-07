@@ -1,5 +1,7 @@
 package Ex7;
 
+import Ex7b.Visitor;
+
 public class SizeVisitor implements Visitor {
     private int totalSize = 0;
 

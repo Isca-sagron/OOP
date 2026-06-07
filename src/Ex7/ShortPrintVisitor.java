@@ -1,16 +1,32 @@
-package Ex7;
+public class ShortPrintVisitor implements FileDetailsVisitor {
+    private StringBuilder output = new StringBuilder();
 
-public class ShortPrintVisitor implements Visitor {
-    @Override
-    public void visit(File f) {
-        System.out.println(f.getName());
+    public String getOutput() {
+        return output.toString();
+    }
+
+    private void appendName(FileDetails fileDetails) {
+        output.append(fileDetails.getName()).append(System.lineSeparator());
     }
 
     @Override
-    public void visit(Folder f) {
-        // ב-Post order נדפיס את התיקייה אחרי הילדים.
-        // מכיוון שה-Folder מבצע accept על הילדים, נצטרך לוגיקה מעט שונה
-        // או פשוט להדפיס כאן אם הסדר המבוקש הוא כזה.
-        System.out.println(f.getName());
-    }
+    public void visit(DirectoryDetails directoryDetails) { appendName(directoryDetails); }
+
+    @Override
+    public void visit(Mp3FileDetails mp3FileDetails) { appendName(mp3FileDetails); }
+
+    @Override
+    public void visit(JpgFileDetails jpgFileDetails) { appendName(jpgFileDetails); }
+
+    @Override
+    public void visit(HtmlFileDetails htmlFileDetails) { appendName(htmlFileDetails); }
+
+    @Override
+    public void visit(PptxFileDetails pptxFileDetails) { appendName(pptxFileDetails); }
+
+    @Override
+    public void visit(DocxFileDetails docxFileDetails) { appendName(docxFileDetails); }
+
+    @Override
+    public void visit(TxtFileDetails txtFileDetails) { appendName(txtFileDetails); }
 }

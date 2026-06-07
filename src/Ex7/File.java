@@ -1,5 +1,7 @@
 package Ex7;
 
+import Ex7b.Visitor;
+
 public class File implements FileNode {
     private String name;
     private String path;
